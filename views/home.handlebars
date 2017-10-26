@@ -25,16 +25,17 @@
   </div>
 
   {{!-- <div class = "header row"> --}}
-  <div class = "row justify-content-center">
-    <h1>Scratch</h1>
+  <div class = "header row card justify-content-center">
+    <h1 class = "align-bottom">Scratch</h1>
+    <div class = "navbar navbar-light bg-faded row justify-content-end">
+      {{!-- <button id = "home"> Home </button> --}}
+      <button class = "btn btn-default" id = "scrape">Scrape articles!</button>
+      <button class = "btn btn-default" id = "savedArticles">Saved</button>
+    </div>
   </div>
-  <div class = "row justify-content-center">
-    {{!-- <button id = "home"> Home </button> --}}
-    <button id = "scrape">Scrape articles!</button>
-    <button id = "savedArticles">Saved</button>
-  </div>
+ 
   {{!-- </div> --}}
-  <div class = "body row justify-content-center">
+  <div class = "body row card justify-content-center">
     <section class = "ArticleCont col-12">
     </section>
   </div>

@@ -1,7 +1,7 @@
 function renderArticles(){
 	$.getJSON("/articles", function(data) {
   	data.map(function(n){
-  	 $(".ArticleCont").append(`<div class = 'artHolder row justify-content-center'><p class='art col-9' data-id='${n._id}'>${n.title}<br />${n.snip}</p><button class='saveArt' col-3' data-id='${n._id}'>Save!</button></div>`);
+  	 $(".ArticleCont").append(`<div class = 'artHolder card row justify-content-center'><p class='art col-9' data-id='${n._id}'>${n.title}<br />${n.snip}</p><button class='saveArt btn btn-default' col-3' data-id='${n._id}'>Save!</button></div>`);
   	});
 	});
 }
