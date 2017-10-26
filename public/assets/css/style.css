@@ -22,8 +22,13 @@ h1 {
 }
 
 .saveArt {
-	width: 100px;
+	margin-right: 25px;
 }
+
+.read {
+	margin-right: 10px;
+}
+
 .body {
 	/*border: 1px solid black;*/
 }

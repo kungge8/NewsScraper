@@ -68,6 +68,10 @@ module.exports = function(app) {
 	app.post("/save/:id", function(req, res){
 		db.User.findOneAndUpdate({}, {$push: {savedArticles: req.params.id}}, {new: true})
 			.then(function(dbUser){
+				db.Article.findOneAndUpdate({_id: req.params.id}, {saved: true}, {new: true})
+				.then(function(res){
+					res.json(res);
+				});
 				res.json(dbUser);
 			})
 			.catch(function(err){
@@ -78,6 +82,10 @@ module.exports = function(app) {
 	app.post("/remove/:sArticle", function(req, res){
 		db.User.findOneAndUpdate({}, {$pull: {savedArticles: req.params.sArticle}}, {new: true})
 			.then(function(result){
+				db.Article.findOneAndUpdate({_id: req.params.sArticle}, {saved: false}, {new: true})
+				.then(function(res){
+					res.json(res);
+				});
 				res.json(result);
 			});
 	});

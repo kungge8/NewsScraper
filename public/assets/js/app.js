@@ -1,7 +1,17 @@
 function renderArticles(){
 	$.getJSON("/articles", function(data) {
   	data.map(function(n){
-  	 $(".ArticleCont").append(`<div class = 'artHolder card row justify-content-center'><p class='art col-9' data-id='${n._id}'>${n.title}<br />${n.snip}</p><button class='saveArt btn btn-default' col-3' data-id='${n._id}'>Save!</button></div>`);
+  		if(!n.saved){
+	  	 $(".ArticleCont").append(`
+	  	 	<div class = 'artHolder card row justify-content-center'>
+	  	 		<p class='art col-9' data-id='${n._id}'>${n.title}
+	  	 		<br />${n.snip}</p>
+	  	 		<div class="row justify-content-end">
+		  	 		<a href="${n.link}" target="_blank"><button class = "read btn btn-default">Read!</button></a>
+		  	 		<button class='saveArt btn btn-default' col-3' data-id='${n._id}'>Save!</button>
+	  	 		</div>
+	  	 	</div>`);
+	  	 }
   	});
 	});
 }
@@ -50,6 +60,7 @@ $(document).on("click", ".saveArt", function(){
 		.done(function(data){
 			console.log(data);
 		});
+	$(this).parent().parent().remove();
 });
 
 $(document).on("click", "#savedArticles", function(){
@@ -57,7 +68,7 @@ $(document).on("click", "#savedArticles", function(){
 		console.log(data);
 		$(".ArticleCont").empty();
   	data.savedArticles.map(function(n){
-  	 $(".ArticleCont").append(`<div class = 'artHolder row justify-content-center'><p class='art col-9' data-id='${n._id}'>${n.title}<br />${n.snip}</p><button class='deleteArt' col-3' data-id='${n._id}'>Delete!!</button></div>`);
+  	 $(".ArticleCont").append(`<div class = 'artHolder row justify-content-center'><p class='art col-9' data-id='${n._id}'>${n.title}<br />${n.snip}</p><button class='btn btn-default deleteArt' col-3' data-id='${n._id}'>Delete!!</button></div>`);
   	});
 	});
 });
@@ -101,6 +112,7 @@ $(document).on("click", 'p.art', function(event){
 		function(data){
 			console.log(data);
 			renderComments(data._id);
+			$('.commentArticle').attr("href", data.link);
 			$('.modal-title').text(data.title);
 			$('.CommentCont').append("<input id='titleInput' name= 'title'>");
 			$('.CommentCont').append("<textarea id='bodyInput' name='body'></textarea>");
