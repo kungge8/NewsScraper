@@ -18,8 +18,9 @@ app.set('views',path.join(__dirname, 'views'));
 app.engine('handlebars',exphbs({defaultLayout: 'main'}));
 app.set('view engine','handlebars');
 
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/NewsScrape";
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/NewsScrape", {
+mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
