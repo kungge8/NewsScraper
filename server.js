@@ -26,7 +26,7 @@ mongoose.connect(MONGODB_URI, {
 
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
-db.User.create({});
+// db.User.create({});
 // Start the server
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
