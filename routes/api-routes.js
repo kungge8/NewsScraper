@@ -37,6 +37,15 @@ module.exports = function(app) {
 			});
 	})
 
+	app.get("/comments/:article", function(req, res){
+		db.Article
+			.find({_id: req.params.article})
+			.populate('comments')
+			.then(function(result){
+				res.json(result);
+			})
+	})
+
 	app.get("/saved", function(req, res){
 		db.User.findOne({})
 			.populate('savedArticles')
